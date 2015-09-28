@@ -1,9 +1,14 @@
 function Airport() {
   this.planes = [];
+  this.defaultCapacity = 20;
 }
 
 Airport.prototype.dock = function(plane) {
   this.planes.push(plane);
+};
+
+Airport.prototype.release_plane = function() {
+  this.planes.pop();
 };
 
 
