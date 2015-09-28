@@ -15,11 +15,17 @@ describe("Airport", function() {
     airport.dock(plane);
     airport.release_plane();
     expect(airport.planes.length).toEqual(0);
-  })
+  });
 
   it("has default capacity", function() {
-
     expect(airport.defaultCapacity).toEqual(20);
+  });
+
+  it("raises an error when airport is full", function() {
+    for(var i=0; i <= airport.defaultCapacity; i++) {
+      airport.dock(plane);
+    }
+    expect(function(){airport.dock(plane);}).toThrowError("Airport unavailable");
   });
 
 });

@@ -4,6 +4,9 @@ function Airport() {
 }
 
 Airport.prototype.dock = function(plane) {
+  if (this.planes.length > 20) {
+    throw new Error("Airport unavailable");
+  }
   this.planes.push(plane);
 };
 
