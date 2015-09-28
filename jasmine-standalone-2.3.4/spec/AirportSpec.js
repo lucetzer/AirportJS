@@ -28,4 +28,9 @@ describe("Airport", function() {
     expect(function(){airport.dock(plane);}).toThrowError("Airport unavailable");
   });
 
+  it("cannot release a plane if airport is empty", function() {
+    expect(function(){airport.release_plane();}).toThrowError("Airport empty");
+  });
+
+
 });

@@ -11,6 +11,9 @@ Airport.prototype.dock = function(plane) {
 };
 
 Airport.prototype.release_plane = function() {
+  if (this.planes.length == 0) {
+    throw new Error("Airport empty")
+  }
   this.planes.pop();
 };
 
