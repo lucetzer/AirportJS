@@ -4,20 +4,33 @@ function Airport() {
 }
 
 Airport.prototype.dock = function(plane) {
-  if (this.planes.length > 20) {
-    throw new Error("Airport unavailable");
-  }
+  if (this.isFull()) {
+    throw "Airport unavailable";
+  } else {
   this.planes.push(plane);
+  }
 };
 
 Airport.prototype.release_plane = function() {
-  if (this.planes.length == 0) {
-    throw new Error("Airport empty")
+  if (this.isEmpty()) {
+    throw "Airport empty";
   }
   this.planes.pop();
 };
 
+Airport.prototype.isFull = function() {
+  if (this.planes.length >= this.defaultCapacity) {
+    return true;
+  }
+  return false;
+};
 
+Airport.prototype.isEmpty = function() {
+  if (this.planes.length == 0) {
+    return true;
+  }
+  return false;
+};
 
 // function Song() {
 // }

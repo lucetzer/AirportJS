@@ -1,5 +1,5 @@
 describe("Airport", function() {
-  var airport;
+  // var airport;
   var plane;
 
   beforeEach(function() {
@@ -22,14 +22,14 @@ describe("Airport", function() {
   });
 
   it("raises an error when airport is full", function() {
-    for(var i=0; i <= airport.defaultCapacity; i++) {
+    for(var i=0; i <= airport.defaultCapacity - 1; i++) {
       airport.dock(plane);
     }
-    expect(function(){airport.dock(plane);}).toThrowError("Airport unavailable");
+    expect(function(){airport.dock(plane);}).toThrow("Airport unavailable");
   });
 
   it("cannot release a plane if airport is empty", function() {
-    expect(function(){airport.release_plane();}).toThrowError("Airport empty");
+    expect(function(){airport.release_plane();}).toThrow("Airport empty");
   });
 
 
