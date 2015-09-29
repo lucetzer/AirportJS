@@ -52,6 +52,7 @@ describe("Airport", function() {
 
   it("plane cannot take off when weather is stormy", function() {
     var weather
+    var isEmpty
 
     beforeEach(function() {
       weather = {

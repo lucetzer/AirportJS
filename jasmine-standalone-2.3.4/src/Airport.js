@@ -7,7 +7,6 @@ Airport.prototype.dock = function(plane) {
   if (this.isFull() || this.weather()) {
     throw "Airport unavailable";
   }
-  console.log(plane);
   plane.land();
   this.planes.push(plane);
 };
