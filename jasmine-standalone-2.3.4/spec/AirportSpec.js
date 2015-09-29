@@ -32,5 +32,41 @@ describe("Airport", function() {
     expect(function(){airport.release_plane();}).toThrow("Airport empty");
   });
 
+  it("cannot dock a plane when weather is stormy", function() {
+    var weather
+
+    beforeEach(function() {
+      weather = {
+        weather: function() {
+          return true;
+        }
+      }
+    });
+
+    spyOn(airport, 'weather').and.returnValue(true)
+    expect(function(){airport.dock(plane);}).toThrow("Airport unavailable");
+  });
+
+  it("plane cannot take off when weather is stormy", function() {
+    var weather
+
+    beforeEach(function() {
+      weather = {
+        weather: function() {
+          return true;
+        }
+      }
+      isEmpty = {
+        isEmpty: function() {
+          return false;
+        }
+      }
+    });
+
+    spyOn(airport, 'weather').and.returnValue(true)
+    spyOn(airport, 'isEmpty').and.returnValue(false)
+    expect(function(){airport.release_plane(plane);}).toThrow
+    ("Plane cannot take off due to stormy weather");
+  });
 
 });

@@ -4,17 +4,20 @@ function Airport() {
 }
 
 Airport.prototype.dock = function(plane) {
-  if (this.isFull()) {
+  if (this.isFull() || this.weather()) {
     throw "Airport unavailable";
-  } else {
-  this.planes.push(plane);
   }
+  // plane.land();
+  this.planes.push(plane);
 };
 
 Airport.prototype.release_plane = function() {
   if (this.isEmpty()) {
     throw "Airport empty";
+  } else if (this.weather()) {
+    throw "Plane cannot take off due to stormy weather";
   }
+  // plane.take_off();
   this.planes.pop();
 };
 
@@ -32,10 +35,9 @@ Airport.prototype.isEmpty = function() {
   return false;
 };
 
-// function Song() {
-// }
-//
-// Song.prototype.persistFavoriteStatus = function(value) {
-//   // something complicated
-//   throw new Error("not yet implemented");
-// };
+Airport.prototype.weather = function() {
+  if (Math.random(40) == 6) {
+    return true;
+  }
+  return false;
+};
