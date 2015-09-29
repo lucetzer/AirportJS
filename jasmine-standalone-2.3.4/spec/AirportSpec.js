@@ -1,24 +1,27 @@
 describe("Airport", function() {
-  // var airport;
+  var airport;
   var plane;
 
   beforeEach(function() {
     airport = new Airport();
+    plane = new Plane();
   });
 
   it("airport can dock a plane", function() {
     airport.dock(plane);
     expect(airport.planes.length).toEqual(1);
+    expect(plane.isFlying).toBe(false);
   });
 
   it("airport can release a plane", function() {
     airport.dock(plane);
-    airport.release_plane();
+    airport.release_plane(plane);
     expect(airport.planes.length).toEqual(0);
   });
 
   it("has default capacity", function() {
     expect(airport.defaultCapacity).toEqual(20);
+    expect(plane.isFlying).toBe(true);
   });
 
   it("raises an error when airport is full", function() {

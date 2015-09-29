@@ -7,18 +7,19 @@ Airport.prototype.dock = function(plane) {
   if (this.isFull() || this.weather()) {
     throw "Airport unavailable";
   }
-  // plane.land();
+  console.log(plane);
+  plane.land();
   this.planes.push(plane);
 };
 
-Airport.prototype.release_plane = function() {
+Airport.prototype.release_plane = function(plane) {
   if (this.isEmpty()) {
     throw "Airport empty";
   } else if (this.weather()) {
     throw "Plane cannot take off due to stormy weather";
   }
-  // plane.take_off();
-  this.planes.pop();
+  plane.take_off();
+  this.planes.pop(plane);
 };
 
 Airport.prototype.isFull = function() {
@@ -36,7 +37,7 @@ Airport.prototype.isEmpty = function() {
 };
 
 Airport.prototype.weather = function() {
-  if (Math.random(40) == 6) {
+  if (Math.floor(Math.random(40) == 6)) {
     return true;
   }
   return false;
